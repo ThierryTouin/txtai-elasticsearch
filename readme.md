@@ -2,7 +2,7 @@
 
 ## Schema
 
-```
+```mermaid
 graph LR
 
 C1[Client]
