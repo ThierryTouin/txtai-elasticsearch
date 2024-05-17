@@ -1,0 +1,46 @@
+version: "3.9"
+services:
+  txtai:
+    build:
+      dockerfile: Dockerfile
+      context: txtai
+    ports:
+      - 8000:8000
+    networks: 
+      - devnet    
+
+  elasticsearch:
+    build:
+      dockerfile: elasticsearch/Dockerfile
+      context: .
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+     - 9200:9200
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    networks: 
+      - devnet    
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.11.4
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    ports:
+      - 5601:5601
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    networks: 
+      - devnet    
+
+volumes:
+  elasticsearch_data:
+
+networks:
+  devnet:
+    external:
+      name: devnet
