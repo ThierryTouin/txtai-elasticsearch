@@ -12,6 +12,7 @@ const movies = [
     {"title": "Forrest Gump", "genre": "Drama", "release_year": 1994}
 ];
 
+// a factoriser
 async function getVector (str) {
     const res = await axios.get('http://localhost:8000/transform?text='+str)
     .then(response => {
