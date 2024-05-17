@@ -9,14 +9,15 @@ C1[Client]
 E[Elasticsearch]
 T[TxtAI]
 
+C1 --0-load data--> C1
 C1 --1-get vector--> T
 T --2-return vector--> C1
 C1 --3-push data+vector--> E
 C1 --4-request cos--> E
 
-classDef S1 fill:#f9f,stroke:#333,stroke-width:4px;
-classDef S2 fill:#ccf,stroke:#333,stroke-width:4px;
-classDef S3 fill:#9f9,stroke:#333,stroke-width:4px;
+classDef S1 fill:#f9f,stroke:#333,stroke-width:2px;
+classDef S2 fill:#ccf,stroke:#333,stroke-width:2px;
+classDef S3 fill:#9f9,stroke:#333,stroke-width:2px;
 
 class C1,C2 S1;
 class T S2;
