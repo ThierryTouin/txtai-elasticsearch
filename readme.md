@@ -25,11 +25,13 @@ class E S3;
 ```
 
 ## Accès
-
+http://loacalhost:5601
 
 
 ## Create Elasticsearch Index
 
+With kibana, 
+```
 PUT /movies
 {
   "mappings": {
@@ -50,35 +52,24 @@ PUT /movies
     }
   }
 }
+```
 
 ## Load data
 
+in loadData, start : 
+```
+node load.js
+```
 
 
 
 
 
+## Liens
+https://medium.com/bigdata-blog/how-to-use-elasticsearch-as-vector-database-5f1768f7d46a
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Vrac
 curl -X POST "http://localhost:8000/add" -H "Content-Type: application/json" -d '[{"text": "text"}]'
 
 
@@ -110,4 +101,3 @@ curl -X POST "http://localhost:8000/add" \
 
 
 
-https://medium.com/bigdata-blog/how-to-use-elasticsearch-as-vector-database-5f1768f7d46a
