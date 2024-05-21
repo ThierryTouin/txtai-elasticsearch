@@ -62,8 +62,15 @@ node load.js
 ```
 
 
-
-
+## Issue
+if elasticsearch has error : 
+  ```
+    Elasticsearch exited unexpectedly, with exit code 78
+  ```
+then execute the following command
+  ```
+    sudo sysctl -w vm.max_map_count=262144
+  ```
 
 ## Liens
 https://medium.com/bigdata-blog/how-to-use-elasticsearch-as-vector-database-5f1768f7d46a

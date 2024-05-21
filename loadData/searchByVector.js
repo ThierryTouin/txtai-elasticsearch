@@ -44,6 +44,13 @@ async function run () {
   })
 
   console.log(hits)
+
+  hits.hits.forEach(hit => {
+
+    console.log(hit._source.title);
+
+  })
+
 }
 
 run().catch(console.log)
