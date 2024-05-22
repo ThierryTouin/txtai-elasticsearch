@@ -1,0 +1,7 @@
+[
+    {"title": "Inception", "genre": "Sci-Fi", "release_year": 2010},
+    {"title": "The Shawshank Redemption", "genre": "Drama", "release_year": 1994},
+    {"title": "The Godfather", "genre": "Crime", "release_year": 1972},
+    {"title": "Pulp Fiction", "genre": "Crime", "release_year": 1994},
+    {"title": "Forrest Gump", "genre": "Drama", "release_year": 1994}
+]

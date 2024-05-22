@@ -4,13 +4,6 @@ const axios = require('axios');
 const { Client } = require('@elastic/elasticsearch')
 const client = new Client({ node: 'http://localhost:9200' })
 
-const movies = [
-    {"title": "Inception", "genre": "Sci-Fi", "release_year": 2010},
-    {"title": "The Shawshank Redemption", "genre": "Drama", "release_year": 1994},
-    {"title": "The Godfather", "genre": "Crime", "release_year": 1972},
-    {"title": "Pulp Fiction", "genre": "Crime", "release_year": 1994},
-    {"title": "Forrest Gump", "genre": "Drama", "release_year": 1994}
-];
 
 // a factoriser
 async function getVector (str) {
@@ -31,6 +24,11 @@ async function getVector (str) {
 }
 
 async function run () {
+
+    // Lecture des données depuis data.json
+    const data = await fs.readFile('data.json', 'utf8');
+    const movies = JSON.parse(data); // Conversion des données JSON en objet JavaScript
+
 
     movies.forEach(async movie => {
         
