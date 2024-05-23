@@ -26,7 +26,11 @@ async function getVector (str) {
 async function run () {
 
 
-  var vectors = await getVector("un drame ?");
+  //var vectors = await getVector("forgive");
+  //var vectors = await getVector("parents");
+  //var vectors = await getVector("who can do the math?");
+  var vectors = await getVector("a topic about revolts?");
+  
 
   
   // Let's search!

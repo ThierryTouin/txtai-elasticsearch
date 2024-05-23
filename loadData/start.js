@@ -3,6 +3,7 @@
 const axios = require('axios');
 const { Client } = require('@elastic/elasticsearch')
 const client = new Client({ node: 'http://localhost:9200' })
+const fs = require('fs').promises;
 
 
 // a factoriser
@@ -34,7 +35,8 @@ async function run () {
         
         console.log("title:" + movie.title);
 
-        var cumulField = movie.title + movie.genre + movie.release_year;
+        //var cumulField = movie.title + movie.genre + movie.release_year;
+        var cumulField = movie.title;
 
         var vectors = await getVector(cumulField);
 

@@ -54,11 +54,29 @@ PUT /movies
 }
 ```
 
+
 ## Load data
 
 in loadData, start : 
 ```
 node load.js
+```
+
+## Search all with kibana
+```
+GET /movies/_search
+{
+  "query": {
+    "match_all": {}
+  }  
+}
+```
+
+## Search data
+
+in loadData, start : 
+```
+node searchByVector.js
 ```
 
 
@@ -77,29 +95,15 @@ https://medium.com/bigdata-blog/how-to-use-elasticsearch-as-vector-database-5f17
 
 
 ## Vrac
+
+curl -X GET "http://localhost:8000/transform?text=RE%3A+Would+machine+learning+be+suitable+for+finding+the+seed+of+a+random+number+generator%3F+Machine"
+
+
+
 curl -X POST "http://localhost:8000/add" -H "Content-Type: application/json" -d '[{"text": "text"}]'
 
 
-curl -X POST "http://localhost:8000/add" \
-  -H "Content-Type: application/json" \
-  -d '[{"text": "Wears a red suit and says ho ho"}]'
 
-
-curl -X POST "http://localhost:8000/add" \
-  -H "Content-Type: application/json" \
-  -d '[{"text": "Pulls a flying sleigh"}]'
-
-curl -X POST "http://localhost:8000/add" \
-  -H "Content-Type: application/json" \
-  -d '[{"text": "This is cut down and decorated"}]'
-
-curl -X POST "http://localhost:8000/add" \
-  -H "Content-Type: application/json" \
-  -d '[{"text": "Santa puts these under the tree"}]'      
-
-curl -X POST "http://localhost:8000/add" \
-  -H "Content-Type: application/json" \
-  -d '[{"text": "Best way to spend the holidays"}]'  
 
 
 
