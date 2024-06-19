@@ -24,19 +24,28 @@ class T S2;
 class E S3;
 ```
 
-## Accès
+
+
+## 1- Start stack 
+```
+./start.sh
+```
+
+## 2- Create Elasticsearch Index with Kabana
+
+### Accès Kibana
 http://loacalhost:5601
 
-
-## Create Elasticsearch Index
-
-With kibana, 
+### Create Index
 ```
 PUT /movies
 {
   "mappings": {
     "properties": {
       "title": {
+        "type": "text"
+      },
+      "synopsis": {
         "type": "text"
       },
       "genre": {
@@ -47,7 +56,7 @@ PUT /movies
       },
       "title_embedding": {
         "type": "dense_vector",
-        "dims": 1536
+        "dims": 384
       }
     }
   }
@@ -55,14 +64,21 @@ PUT /movies
 ```
 
 
-## Load data
+## 3- Manage data with **manageDatas** directory 
 
-in loadData, start : 
+### Load datas
 ```
-node load.js
+npm install
+node load-data.js
 ```
 
-## Search all with kibana
+### Search data
+
+```
+node searchByVector.js
+```
+
+NB:  You can search all datas with kibana query
 ```
 GET /movies/_search
 {
@@ -70,13 +86,6 @@ GET /movies/_search
     "match_all": {}
   }  
 }
-```
-
-## Search data
-
-in loadData, start : 
-```
-node searchByVector.js
 ```
 
 

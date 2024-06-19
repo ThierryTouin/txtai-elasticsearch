@@ -21,6 +21,8 @@ services:
      - 9200:9200
     volumes:
       - elasticsearch_data:/usr/share/elasticsearch/data
+    depends_on:
+      - fixsysctl
     networks: 
       - devnet    
 
@@ -36,6 +38,17 @@ services:
         condition: service_healthy
     networks: 
       - devnet    
+
+  fixsysctl:
+    restart: "no"
+    privileged: true
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          memory: 25m
+    image: centos:7
+    command: "sysctl -w vm.max_map_count=262144"
 
 volumes:
   elasticsearch_data:

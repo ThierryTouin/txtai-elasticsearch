@@ -27,7 +27,7 @@ async function getVector (str) {
 async function run () {
 
     // Lecture des données depuis data.json
-    const data = await fs.readFile('data.json', 'utf8');
+    const data = await fs.readFile('./in/data.json', 'utf8');
     const movies = JSON.parse(data); // Conversion des données JSON en objet JavaScript
 
 
@@ -36,7 +36,7 @@ async function run () {
         console.log("title:" + movie.title);
 
         //var cumulField = movie.title + movie.genre + movie.release_year;
-        var cumulField = movie.title;
+        var cumulField = movie.synopsis;
 
         var vectors = await getVector(cumulField);
 
@@ -47,6 +47,7 @@ async function run () {
             index: 'movies',
             body: {
                 title: movie.title,
+                synopsis: movie.synopsis,
                 genre: movie.genre,
                 release_year: movie.release_year,
                 title_embedding: vectors

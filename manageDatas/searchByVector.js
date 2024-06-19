@@ -26,10 +26,8 @@ async function getVector (str) {
 async function run () {
 
 
-  //var vectors = await getVector("forgive");
-  //var vectors = await getVector("parents");
-  //var vectors = await getVector("who can do the math?");
-  var vectors = await getVector("a topic about revolts?");
+  //var vectors = await getVector("a topic about revolts?");
+  var vectors = await getVector("I'm looking for a crime thriller with a very gray future world.");
   
 
   
@@ -47,11 +45,12 @@ async function run () {
     }
   })
 
-  console.log(hits)
+  //console.log(hits)
 
   hits.hits.forEach(hit => {
 
     console.log(hit._source.title);
+    console.log(hit._source.synopsis);
 
   })
 
