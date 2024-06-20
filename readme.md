@@ -111,7 +111,7 @@ curl -X GET "http://localhost:8000/transform?text=RE%3A+Would+machine+learning+b
 
 curl -X POST "http://localhost:8000/add" -H "Content-Type: application/json" -d '[{"text": "text"}]'
 
-
+https://blog.gcn.sh/howtos/installing-libretranslate-using-docker-and-ubuntu
 
 
 
