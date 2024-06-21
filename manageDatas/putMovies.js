@@ -2,13 +2,19 @@
 
 const axios = require('axios');
 const { Client } = require('@elastic/elasticsearch')
-const client = new Client({ node: 'http://localhost:9200' })
+
+const config = require('./load-config');
+
+
+const client = new Client({ node: config.elasticsearchUrl });
+const indexName = config.indexName;
+
 const fs = require('fs').promises;
 
 
 // a factoriser
 async function getVector (str) {
-    const res = await axios.get('http://localhost:8000/transform?text='+str)
+    const res = await axios.get(config.txt2VectorUrl+str)
     .then(response => {
       console.log("code:" + response.status);
       return response;
@@ -17,11 +23,17 @@ async function getVector (str) {
       console.log(error);
     });
 
-    if (res.status == 200) {
+    console.log('res:' + res);
+
+    
+
+    if (res && res.status == 200) {
       const vectors = await res.data;
       console.log(vectors);
       return vectors;
-    } 
+    } else {
+      return "empty";
+    }
 }
 
 async function run () {
@@ -40,11 +52,12 @@ async function run () {
 
         var vectors = await getVector(cumulField);
 
-        //console.log('vectors:' + vectors);
+        if (vectors!='empty') {
+          //console.log('vectors:' + vectors);
 
-        /// insert data + vectors in elasticsearch
-        await client.index({
-            index: 'movies',
+          /// insert data + vectors in elasticsearch
+          await client.index({
+            index: indexName,
             body: {
                 title: movie.title,
                 synopsis: movie.synopsis,
@@ -53,6 +66,8 @@ async function run () {
                 title_embedding: vectors
             }
           })
+      }
+
 
 
 

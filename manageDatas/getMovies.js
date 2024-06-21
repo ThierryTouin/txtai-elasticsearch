@@ -1,13 +1,12 @@
 const axios = require('axios');
 const fs = require('fs');
-const dotenv = require('dotenv');
+const config = require('./load-config');
 
-// Charge les variables d'environnement à partir du fichier .env
-dotenv.config();
 
-// Récupère la clé API à partir des variables d'environnement
-const apiKey = process.env.TMDB_API_KEY;
-const nbPage = 30;
+const urlTmdb = config.tmdbUrl;
+const apiKey = config.tmdbApiKey;
+const nbPage = config.tmdbNbPage;
+
 
 
 // Fonction pour récupérer les données des films d'une page spécifique
@@ -21,7 +20,7 @@ const getMoviesDataFromPage = async (page) => {
   };
 
   try {
-    const response = await axios.get('https://api.themoviedb.org/3/discover/movie', { params });
+    const response = await axios.get(urlTmdb+`/3/discover/movie`, { params });
     return response.data.results;
   } catch (error) {
     console.error(`Erreur lors de la récupération des données de la page ${page} :`, error.message);
@@ -53,7 +52,7 @@ const writeDataJson = async () => {
       const [year] = release_date.split('-');
 
       // Récupération du synopsis et des genres
-      const movieResponse = await axios.get(`https://api.themoviedb.org/3/movie/${id}`, { params: { api_key: apiKey, language: 'en-US' } });
+      const movieResponse = await axios.get(urlTmdb+`/3/movie/${id}`, { params: { api_key: apiKey, language: 'en-US' } });
       const { overview: synopsis, genres } = movieResponse.data;
 
       // Mappage des genres

@@ -28,57 +28,23 @@ class E S3;
 
 ## 1- Start stack 
 ```
-./start.sh
-```
-
-## 2- Create Elasticsearch Index with Kabana
-
-### Accès Kibana
-http://loacalhost:5601
-
-### Create Index
-```
-PUT /movies
-{
-  "mappings": {
-    "properties": {
-      "title": {
-        "type": "text"
-      },
-      "synopsis": {
-        "type": "text"
-      },
-      "genre": {
-        "type": "keyword"
-      },
-      "release_year": {
-        "type": "integer"
-      },
-      "title_embedding": {
-        "type": "dense_vector",
-        "dims": 384
-      }
-    }
-  }
-}
+./start-environnement.sh
 ```
 
 
-## 3- Manage data with **manageDatas** directory 
 
-### Load datas
+## 2- Load datas
 ```
-npm install
-node load-data.js
+./load-data.sh
 ```
 
-### Search data
+## 3- Search data
 
 ```
-node searchByVector.js
+./search.sh
 ```
 
-NB:  You can search all datas with kibana query
+NB:  You can search all datas with kibana query (http://localhost:5601)
 ```
 GET /movies/_search
 {
@@ -117,7 +83,7 @@ https://blog.gcn.sh/howtos/installing-libretranslate-using-docker-and-ubuntu
 
 
 
-
+"I'm looking for a crime thriller with a very gray future world."
 
 
 

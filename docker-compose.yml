@@ -39,6 +39,16 @@ services:
     networks: 
       - devnet    
 
+  translate:
+    image: libretranslate/libretranslate
+    environment:
+      - LT_UPDATE_MODELS=true
+      - LT_LOAD_ONLY=en,fr
+    ports:
+      - 5000:5000
+    # networks: 
+    #   - devnet    
+
   fixsysctl:
     restart: "no"
     privileged: true
