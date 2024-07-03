@@ -34,8 +34,15 @@ class E S3;
 
 
 ## 2- Load datas
+
+### Retrieve data from internet and create `data.json` file (if you have already the json data, you can jump this step.)
 ```
-./load-data.sh
+./get-data-from-web.sh
+```
+
+### Load `data.json` file in elasticsearch index
+```
+./load-data-in-elasticsearch.sh
 ```
 
 ## 3- Search data
